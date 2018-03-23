@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "64853674010",
+    "firebase_url": "https://shophelper-2018.firebaseio.com",
+    "project_id": "shophelper-2018",
+    "storage_bucket": "shophelper-2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64853674010:android:c9f3883858cfea2d",
+        "android_client_info": {
+          "package_name": "com.example.gabriel.shophelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64853674010-b5jjq49ojfq12p83guro6uop58btimjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gabriel.shophelper",
+            "certificate_hash": "297ce52d085a026be41ae624651c600ee1ee3444"
+          }
+        },
+        {
+          "client_id": "64853674010-0m95t6ku842ikojlf4na14mj7bdchpkq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gabriel.shophelper",
+            "certificate_hash": "2480600c8c5ef4b97ee28b79457e0bbeef43b23e"
+          }
+        },
+        {
+          "client_id": "64853674010-lf2s28lqo9bk6po3p8rl0pppfktc88dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz1P0O4_0ry2VNWAC0rf91RT8yCJQGbl4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64853674010-lf2s28lqo9bk6po3p8rl0pppfktc88dc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

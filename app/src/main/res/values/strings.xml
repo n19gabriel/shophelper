@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">shop helper</string>
+    <string name="email">Email</string>
+    <string name="password">.......</string>
+    <string name="log_in">Log in</string>
+    <string name="sing_up">Sing up</string>
+    <string name="sing_in_google">Sing in google</string>
+    <string name="name_shop">Name shop</string>
+    <string name="add_shop">Add shop</string>
+    <string name="delete">Delete</string>
+    <string name="log_out">Log out</string>
+    <string name="search">Search...</string>
+    <string name="name_item">Name</string>
+    <string name="price">Prise</string>
+    <string name="quantity">Quantity</string>
+    <string name="set_image">Set image</string>
+    <string name="add_item">Add</string>
+</resources>
