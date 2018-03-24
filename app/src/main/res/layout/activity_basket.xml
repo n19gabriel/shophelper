@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.gabriel.shophelper.view.BasketActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gabriel.shophelper.view.BasketActivity">
+    android:orientation="vertical"
+    android:background="@color/primary_light">
+    <include
+        android:id="@+id/toolbar_item"
+        layout="@layout/toolbar">
+    </include>
 
-</android.support.constraint.ConstraintLayout>
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:searchBackground="@color/primary"
+        app:searchSuggestionBackground="@color/primary"
+        app:searchCloseIcon="@drawable/ic_action_navigation_close_inverted"
+        app:searchBackIcon="@drawable/ic_action_navigation_arrow_back_inverted"
+        app:searchSuggestionIcon="@drawable/ic_suggestion"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        />
+    <ListView
+        android:id="@+id/list"
+        android:layout_below="@id/toolbar_item"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/new_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_add_white_36dp"
+        fab:fab_colorNormal="@color/primary"
+        fab:fab_colorPressed="@color/primary_dark"
+        fab:fab_colorRipple="@color/accent" />
+</RelativeLayout>

@@ -60,13 +60,12 @@ public class ShopListActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
-        String userId = user.getUid();
         myRef = FirebaseDatabase.getInstance().getReference();
 
 
         toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shop");
+        getSupportActionBar().setTitle("Shops");
         searchView = findViewById(R.id.search_view);
 
         Badd.setOnClickListener(new View.OnClickListener() {

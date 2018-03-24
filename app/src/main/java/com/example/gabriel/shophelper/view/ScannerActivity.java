@@ -45,11 +45,13 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         if(roles.equals("admin")) {
             Intent intent = new Intent(ScannerActivity.this, NewItemActivity.class);
             intent.putExtra("id_Shop", id_Shop);
+            intent.putExtra("roles", roles);
             intent.putExtra("code", result.getText());
             startActivity(intent);
         }else{
             Intent intent = new Intent(ScannerActivity.this,BasketActivity.class);
             intent.putExtra("id_Shop", id_Shop);
+            intent.putExtra("roles", roles);
             intent.putExtra("code", result.getText());
             startActivity(intent);
         }
