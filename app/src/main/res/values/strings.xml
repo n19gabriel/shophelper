@@ -15,4 +15,5 @@
     <string name="quantity">Quantity</string>
     <string name="set_image">Set image</string>
     <string name="add_item">Add</string>
+    <string name="q_ty">Q-ty:</string>
 </resources>

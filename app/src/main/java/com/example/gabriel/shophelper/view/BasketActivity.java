@@ -2,12 +2,17 @@ package com.example.gabriel.shophelper.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriel.shophelper.Adapters.ItemAdapter;
@@ -32,12 +37,17 @@ public class BasketActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private MaterialSearchView searchView;
     private ListView listView;
+    private TextView amount;
     private ArrayList<Item> items;
     private ItemAdapter itemAdapter;
     private String id_Shop;
     private String roles;
     private String code;
     private String userId;
+    private int amo;
+    private int counter;
+    private boolean flag;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +61,10 @@ public class BasketActivity extends AppCompatActivity {
 
         Badd = findViewById(R.id.new_item);
         listView = findViewById(R.id.list);
+        amount = findViewById(R.id.amount);
 
         items = new ArrayList<>();
+        counter = 1;
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -63,6 +75,7 @@ public class BasketActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Items");
         searchView = findViewById(R.id.search_view_item);
+
 
         Badd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +100,82 @@ public class BasketActivity extends AppCompatActivity {
                 listView.setAdapter(itemAdapter);
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(BasketActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_menu_item, null);
+                Button add = mView.findViewById(R.id.add);
+                Button delete = mView.findViewById(R.id.delete_item);
+                ImageButton plus = mView.findViewById(R.id.plus);
+                ImageButton minus = mView.findViewById(R.id.minus);
+                flag = true;
+                final TextView view_counter = mView.findViewById(R.id.view_counter);
+                view_counter.setText(String.valueOf(counter));
+                final Item item = items.get(position);
+
+                plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!view_counter.getText().toString().equals("1000")){
+                            view_counter.setText(String.valueOf(++counter));
+                        }
+                    }
+                });
+
+                minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!view_counter.getText().toString().equals("1")){
+                            view_counter.setText(String.valueOf(--counter));
+                        }
+                    }
+                });
+
+                add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag) {
+                            if (counter + Integer.parseInt(item.getQuantity()) <= 1000) {
+                                myRef.child("Users").child(userId).child("Basket")
+                                        .child(item.getId()).child("quantity")
+                                        .setValue(String.valueOf(counter + Integer.parseInt(item.getQuantity())));
+                                item.setQuantity(String.valueOf(counter + Integer.parseInt(item.getQuantity())));
+                            } else {
+                                myRef.child("Users").child(userId).child("Basket")
+                                        .child(item.getId()).child("quantity")
+                                        .setValue(String.valueOf("1000"));
+                                item.setQuantity("1000");
+
+                            }
+                        }
+                    }
+                });
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(counter>=Integer.parseInt(item.getQuantity())) {
+                            myRef.child("Users").child(userId).child("Basket")
+                                    .child(item.getId()).removeValue();
+                            flag = false;
+                        }
+                        else {
+                            myRef.child("Users").child(userId).child("Basket")
+                                    .child(item.getId()).child("quantity")
+                                    .setValue(String.valueOf(Integer.parseInt(item.getQuantity())-counter));
+                            item.setQuantity(String.valueOf(Integer.parseInt(item.getQuantity())-counter));
+                            flag = false;
+                        }
+                    }
+                });
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+                return false;
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
@@ -156,11 +245,14 @@ public class BasketActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 items.clear();
+                amo = 0;
                 for(DataSnapshot itemSnapshot: dataSnapshot.getChildren()){
                     Item item = itemSnapshot.getValue(Item.class);
+                    amo+= Integer.parseInt(item.getQuantity())*Integer.parseInt(item.getPrice());
                     items.add(item);
 
                 }
+                amount.setText("Q-ty: "+amo+"$");
                 itemAdapter = new ItemAdapter(BasketActivity.this, items);
                 listView.setAdapter(itemAdapter);
             }

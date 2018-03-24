@@ -51,7 +51,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 
         TextView priceTextView = listItemView.findViewById(R.id.price_item);
 
-        priceTextView.setText(currentItem.getPrice()+"$");
+        priceTextView.setText(Integer.parseInt(currentItem.getQuantity())*Integer.parseInt(currentItem.getPrice())+"$");
         // Check if an image is provided for this word or not
 
         if(currentItem.getId_Image()!=null) {

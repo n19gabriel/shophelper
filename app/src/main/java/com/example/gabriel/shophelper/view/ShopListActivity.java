@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ShopListActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FloatingActionButton Badd;
+    private ImageButton Bbasket;
     private Toolbar toolbar;
     private MaterialSearchView searchView;
     private ListView listView_1;
@@ -51,6 +53,7 @@ public class ShopListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_list);
 
         Badd = findViewById(R.id.new_Shop);
+        Bbasket = findViewById(R.id.basket);
 
         listView_1 = findViewById(R.id.list_1);
         listView_2 = findViewById(R.id.list_2);
@@ -67,6 +70,7 @@ public class ShopListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Shops");
         searchView = findViewById(R.id.search_view);
+
 
         Badd.setOnClickListener(new View.OnClickListener() {
             @Override
