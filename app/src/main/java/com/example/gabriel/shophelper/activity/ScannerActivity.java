@@ -37,7 +37,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     protected void onPause() {
         super.onPause();
-        //zXingScannerView.stopCamera();
+        zXingScannerView.stopCamera();
     }
 
     @Override

@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/primary_dark">
+    android:background="@color/primary_light">
     <Button
         android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete"
         android:layout_margin="16dp"
-        android:background="@color/accent"/>
+        android:background="@color/primary"/>
 </LinearLayout>
