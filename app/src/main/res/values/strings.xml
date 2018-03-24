@@ -16,4 +16,14 @@
     <string name="set_image">Set image</string>
     <string name="add_item">Add</string>
     <string name="q_ty">Q-ty:</string>
+    <string name="pay">Pay</string>
+    <string name="delete_all">Delete all</string>
+    <string name="checkout">Checkout</string>
+    <string name="scan_qr_1">Please scan this QR code</string>
+    <string name="scan_qr_2">on shop exit to provide</string>
+    <string name="scan_qr_3">payment</string>
+    <string name="scan_qr_4">Do not forget paper check</string>
+    <string name="scan_qr_5">on the checkout</string>
+    <string name="back_to_list">Back to list</string>
+    <string name="history">History</string>
 </resources>

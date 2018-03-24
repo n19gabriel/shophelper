@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.view;
+package com.example.gabriel.shophelper.activity.item;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -64,6 +64,7 @@ public class NewItemActivity extends AppCompatActivity {
         ETprice = findViewById(R.id.et_price);
 
         TVcode = findViewById(R.id.tv_code);
+        TVcode.setText("Barcode: "+code);
 
         Badd = findViewById(R.id.add_item);
         BsetImage = findViewById(R.id.bt_set_image);

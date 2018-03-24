@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.Adapters;
+package com.example.gabriel.shophelper.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

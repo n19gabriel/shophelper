@@ -15,18 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AuthenticationActivity">
+        <activity android:name=".activity.AuthenticationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ShopListActivity" />
-        <activity android:name=".view.NewShopActivity" />
-        <activity android:name=".view.ScannerActivity" />
-        <activity android:name=".view.NewItemActivity" />
-        <activity android:name=".view.BasketActivity"></activity>
+        <activity android:name=".activity.shop.ShopListActivity" />
+        <activity android:name=".activity.shop.NewShopActivity" />
+        <activity android:name=".activity.ScannerActivity" />
+        <activity android:name=".activity.item.NewItemActivity" />
+        <activity android:name=".activity.item.BasketActivity" />
+        <activity android:name=".activity.QRCodeGeneratorActivity" />
+        <activity android:name=".activity.HistoryActivity"></activity>
     </application>
 
 </manifest>

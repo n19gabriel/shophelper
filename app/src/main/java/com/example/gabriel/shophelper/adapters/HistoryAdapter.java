@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.Adapters;
+package com.example.gabriel.shophelper.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,17 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.gabriel.shophelper.R;
-import com.example.gabriel.shophelper.model.Shop;
 
 import java.util.ArrayList;
 
 /**
- * Created by gabriel on 22.03.18.
+ * Created by gabriel on 24.03.18.
  */
 
-public class ShopAdapter extends ArrayAdapter<Shop> {
-    public ShopAdapter(Context context, ArrayList<Shop> offices) {
-        super(context, 0, offices);
+public class HistoryAdapter extends ArrayAdapter<String> {
+    public HistoryAdapter(Context context, ArrayList<String> dates) {
+        super(context, 0, dates);
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -26,12 +25,15 @@ public class ShopAdapter extends ArrayAdapter<Shop> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.shop_item, parent, false);
+                    R.layout.history_item, parent, false);
         }
 
-        Shop currentShop = getItem(position);
-        TextView nameTextView = listItemView.findViewById(R.id.tv_shop_name);
-        nameTextView.setText(currentShop.getName());
+        String currentDate = getItem(position);
+
+        TextView nameTextView =listItemView.findViewById(R.id.history_TV);
+
+        nameTextView.setText(currentDate);
+
         return listItemView;
     }
 }

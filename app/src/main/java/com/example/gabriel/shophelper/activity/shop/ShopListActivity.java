@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.view;
+package com.example.gabriel.shophelper.activity.shop;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.gabriel.shophelper.Adapters.ShopAdapter;
+import com.example.gabriel.shophelper.activity.AuthenticationActivity;
+import com.example.gabriel.shophelper.activity.HistoryActivity;
+import com.example.gabriel.shophelper.activity.ScannerActivity;
+import com.example.gabriel.shophelper.adapters.ShopAdapter;
 import com.example.gabriel.shophelper.R;
 import com.example.gabriel.shophelper.model.Shop;
 import com.example.gabriel.shophelper.model.User;
@@ -34,9 +38,10 @@ public class ShopListActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FloatingActionButton Badd;
-    private ImageButton Bbasket;
+    private ImageButton Bhistory;
     private Toolbar toolbar;
     private MaterialSearchView searchView;
+    private LinearLayout shop_layout;
     private ListView listView_1;
     private ListView listView_2;
     private ArrayList<Shop> shops;
@@ -53,7 +58,8 @@ public class ShopListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_list);
 
         Badd = findViewById(R.id.new_Shop);
-        Bbasket = findViewById(R.id.basket);
+        Bhistory = findViewById(R.id.history_button);
+        shop_layout = findViewById(R.id.shop_layout);
 
         listView_1 = findViewById(R.id.list_1);
         listView_2 = findViewById(R.id.list_2);
@@ -76,6 +82,14 @@ public class ShopListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShopListActivity.this, NewShopActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Bhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ShopListActivity.this, HistoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -230,6 +244,8 @@ public class ShopListActivity extends AppCompatActivity {
                         roles = user.getRoles();
                         if (roles.equals("user")) {
                             Badd.setVisibility(View.GONE);
+                        }else {
+                            shop_layout.setVisibility(View.GONE);
                         }
                     }
                 }

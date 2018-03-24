@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.view;
+package com.example.gabriel.shophelper.activity.shop;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

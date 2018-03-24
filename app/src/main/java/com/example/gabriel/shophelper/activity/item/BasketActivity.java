@@ -1,4 +1,4 @@
-package com.example.gabriel.shophelper.view;
+package com.example.gabriel.shophelper.activity.item;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gabriel.shophelper.Adapters.ItemAdapter;
 import com.example.gabriel.shophelper.R;
+import com.example.gabriel.shophelper.activity.AuthenticationActivity;
+import com.example.gabriel.shophelper.activity.QRCodeGeneratorActivity;
+import com.example.gabriel.shophelper.activity.ScannerActivity;
+import com.example.gabriel.shophelper.adapters.ItemAdapter;
 import com.example.gabriel.shophelper.model.Item;
+import com.example.gabriel.shophelper.model.Record;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +38,8 @@ public class BasketActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FloatingActionButton Badd;
+    private Button Bpay;
+    private Button BdeleteAll;
     private Toolbar toolbar;
     private MaterialSearchView searchView;
     private ListView listView;
@@ -60,6 +66,8 @@ public class BasketActivity extends AppCompatActivity {
         code = intent.getStringExtra("code");
 
         Badd = findViewById(R.id.new_item);
+        Bpay = findViewById(R.id.pay);
+        BdeleteAll = findViewById(R.id.delete_all);
         listView = findViewById(R.id.list);
         amount = findViewById(R.id.amount);
 
@@ -87,9 +95,51 @@ public class BasketActivity extends AppCompatActivity {
             }
         });
 
+        Bpay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!items.isEmpty()){
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(BasketActivity.this);
+                    View mView = getLayoutInflater().inflate(R.layout.dialog_menu_checkout, null);
+                    TextView amount_checkout = mView.findViewById(R.id.amount_checkout);
+                    amount_checkout.setText("Q-ty: "+amo+"$");
+                    Button checkout = mView.findViewById(R.id.checkout);
+                    checkout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String qrcode;
+                            qrcode = amo+"/"+id_Shop+"/";
+                            for (Item item: items){
+                                qrcode+=item.getId()+"/"+item.getBarcode()+"/"+item.getName()
+                                        +"/"+item.getQuantity()+"/"+item.getPrice();
+                            }
+                            myRef.child("Users").child(userId).child("Basket").removeValue();
+                            Record record = new Record("Purchase price: " + amo + "$");
+                            myRef.child("Users").child(userId).child("History").child(record.getTime()).setValue(record);
+                            Intent intent = new Intent(BasketActivity.this, QRCodeGeneratorActivity.class);
+                            intent.putExtra("qrcode", qrcode);
+                            startActivity(intent);
+                        }
+                    });
+                    mBuilder.setView(mView);
+                    final AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+
+                }
+            }
+        });
+
+        BdeleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myRef.child("Users").child(userId).child("Basket").removeValue();
+            }
+        });
+
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
+
 
             }
 
