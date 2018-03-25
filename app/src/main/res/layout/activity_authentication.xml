@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/background_login"
+                android:background="@color/primary_light"
                 android:padding="16dp"
                 android:text="@string/log_in"
                 android:textAllCaps="false"
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/background_signup"
+                android:background="@color/primary_light"
                 android:padding="16dp"
                 android:text="@string/sing_up"
                 android:textAllCaps="false"
@@ -101,8 +101,8 @@
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/sing_in_google"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:textSize="18sp" />
 
